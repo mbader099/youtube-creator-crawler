@@ -1,0 +1,50 @@
+# ── Secrets & credentials ─────────────────────────────────────────────
+.env
+.env.*
+*.env
+!.env.example
+.groq_key
+*_creds.json
+*creds*.json
+*credentials*.json
+*service-account*.json
+*service_account*.json
+client_secret*.json
+token*.json
+*.pem
+*.key
+# Blanket: the repo ships no JSON. Catches Google's default service-account
+# filename (<project>-<hash>.json) plus every cache/queue/credit file.
+*.json
+
+# ── Scraped / business data (never commit) ────────────────────────────
+*.csv
+!examples/*.example.csv
+*.xlsx
+*.xls
+*.jsonl
+seed_queue*.json
+*pass_list*.json
+pass-list*.json
+channel_cache*.json
+finder_credits*.json
+accounts.json
+suppression.txt
+known_senders.txt
+dmarc_cache/
+
+# ── Browser profile (cookies / session) ───────────────────────────────
+.rabbithole_profile/
+
+# ── Lock files ────────────────────────────────────────────────────────
+.~lock.*#
+*.lock
+
+# ── Python / OS noise ─────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+*.egg-info/
+.DS_Store

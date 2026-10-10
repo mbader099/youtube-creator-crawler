@@ -1,0 +1,17 @@
+# Pinned to the versions this project is tested against (Python 3.10+).
+# Audit with:  pip install pip-audit && pip-audit -r requirements.txt
+
+# ── Core ──────────────────────────────────────────────────────────────
+playwright==1.61.0          # then: python -m playwright install chromium
+playwright-stealth==2.0.3   # optional at runtime; crawler degrades gracefully
+gspread==6.2.1
+google-auth==2.55.1
+openpyxl==3.1.5             # --local / --import-xlsx only
+
+# ── Brand enrichment fetch ladder ─────────────────────────────────────
+Crawl4AI==0.9.0             # then: crawl4ai-setup
+scrapling==0.4.10           # then: scrapling install
+
+# ── Contact discovery ─────────────────────────────────────────────────
+curl_cffi==0.15.0           # TLS-fingerprint impersonation fallback
+ddgs==9.14.4                # DuckDuckGo search for LinkedIn X-ray
