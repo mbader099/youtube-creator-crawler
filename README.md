@@ -1,5 +1,7 @@
 # youtube-creator-crawler
 
+[![CI](https://github.com/mbader099/youtube-creator-crawler/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/mbader099/youtube-creator-crawler/actions/workflows/ci.yml)
+
 Discover YouTube creators that keyword search can't find, detect the brands already
 paying them, and resolve each brand to a verified decision-maker contact. The whole
 pipeline runs on free API tiers and open-source tooling.

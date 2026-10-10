@@ -1,0 +1,17 @@
+# ML pipeline deps (separate from the crawler's ../../requirements.txt).
+# All install from prebuilt wheels on macOS arm64 / Linux x86_64 — no system packages needed.
+# Audit with:  pip install pip-audit && pip-audit -r src/ml_pipeline/requirements.txt
+
+# cleaning / dedup / filtering  (python -m ml_pipeline run)
+trafilatura==2.3.1      # HTML main-content extraction
+datasketch==2.0.0       # MinHash + LSH near-duplicate detection
+langdetect==1.0.9       # language identification
+
+# fine-tune proof  (python -m ml_pipeline.train)
+torch==2.14.1
+transformers==5.19.0
+datasets==5.1.0
+accelerate==1.15.0      # required by transformers.Trainer
+
+# tests
+pytest==9.1.1

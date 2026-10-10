@@ -1,0 +1,10 @@
+# Lint config used by CI (and locally: `ruff check src/ml_pipeline`).
+line-length = 110
+target-version = "py310"
+
+[lint]
+# pycodestyle, pyflakes, bugbear, import order, pyupgrade
+select = ["E", "F", "W", "B", "I", "UP"]
+
+[lint.isort]
+known-first-party = ["ml_pipeline", "envfile"]
