@@ -75,24 +75,28 @@ Full breakdown and method: [`src/ml_pipeline/README.md`](src/ml_pipeline/README.
 ## Architecture
 
 ```mermaid
-flowchart LR
-    subgraph Discovery
-        A["Keyword finder<br/>YouTube Data API"] -->|passing channels| Q[("seed queue")]
-        Q --> B["BFS crawler<br/>related-video graph<br/>Playwright"]
+flowchart TB
+    subgraph DISC["1 · Discovery"]
+        direction LR
+        A["Keyword finder<br/>YouTube Data API"] --> Q[("seed queue")]
+        Q --> B["BFS crawler<br/>related-video graph"]
         B -->|new channels| Q
+        A --> S["Brand sourcer<br/>sponsor links"]
     end
-    subgraph "Training-data pipeline (src/ml_pipeline)"
-        C["collect<br/>robots.txt · pacing · backoff"] --> CL["clean<br/>trafilatura · NFKC · PII scrub"]
+    subgraph PIPE["2 · Training-data pipeline · src/ml_pipeline"]
+        direction LR
+        C["collect<br/>robots.txt · pacing"] --> CL["clean<br/>trafilatura · PII scrub"]
         CL --> D["dedup<br/>exact + MinHash/LSH"]
-        D --> F["filter<br/>quality heuristics · language ID"]
-        F --> X["export<br/>training.jsonl + provenance"]
-        X --> R["report<br/>coverage + quality"]
-        X --> T["train<br/>distilgpt2, held-out loss"]
+        D --> F["filter<br/>quality · language"]
+        F --> X["export<br/>training.jsonl"]
     end
-    B -->|channels| C
-    A -->|channels| C
-    S["Brand sourcer<br/>sponsor links"] -->|brand URLs| C
-    A --> S
+    subgraph EVAL["3 · Measure"]
+        direction LR
+        R["report<br/>coverage + quality"]
+        T["train<br/>held-out loss"]
+    end
+    DISC -->|channels + brand URLs| PIPE
+    PIPE --> EVAL
 ```
 
 Design notes: [`docs/architecture.md`](docs/architecture.md) (crawler) ·
